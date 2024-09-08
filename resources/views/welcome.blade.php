@@ -5,11 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{env('APP_NAME')}}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <title>{{env('APP_NAME')}}</title>
 </head>
 <body>
-<!-- component -->
 <div class="relative shadow bg-white dark:bg-gray-800">
     <div class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url(https://source.unsplash.com/featured/?forest)"></div>
 
@@ -21,27 +21,36 @@
             <ul class="flex items-center gap-5">
                 @if (Route::has('login'))
                     @auth
-                        <a
-                            href="{{ url('/dashboard') }}"
-                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                        >
-                            Dashboard
-                        </a>
-                    @else
-                        <a
-                            href="{{ route('login') }}"
-                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                        >
-                            Log in
-                        </a>
-
-                        @if (Route::has('register'))
+                        <li>
                             <a
-                                href="{{ route('register') }}"
+                                href="{{ url('/dashboard') }}"
                                 class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                             >
-                                Register
+                                Dashboard
                             </a>
+                        </li>
+
+                    @else
+                        <li>
+                            <a
+                                href="{{ route('login') }}"
+                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                            >
+                                Log in
+                            </a>
+                        </li>
+
+
+                        @if (Route::has('register'))
+                            <li>
+                                <a
+                                    href="{{ route('register') }}"
+                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                >
+                                    Register
+                                </a>
+                            </li>
+
                         @endif
                     @endauth
                 @endif
