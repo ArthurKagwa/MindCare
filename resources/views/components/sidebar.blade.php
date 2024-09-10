@@ -3,7 +3,7 @@
         <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Sidebar</h2>
     </div>
     <ul class="mt-4">
-        <li class="px-4 py-2">
+        <li class="px-4 py-2 bg-amber-200 rounded m-2 hover:bg-amber-300 ">
             <a href="{{ route('dashboard') }}" class="text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">
                 {{ __('Dashboard') }}
             </a>
