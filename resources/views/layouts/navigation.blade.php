@@ -1,4 +1,5 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+{{-- resources/views/layouts/navigation.blade.php --}}
+<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 sticky top-0 z-50">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -16,11 +17,11 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('events')">
-                        {{ __('Events') }}
-                    </x-nav-link>
-                </div>
+{{--                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">--}}
+{{--                    <x-nav-link :href="route('events')" :active="request()->routeIs('events')">--}}
+{{--                        {{ __('Events') }}--}}
+{{--                    </x-nav-link>--}}
+{{--                </div>--}}
             </div>
 
             <!-- Settings Dropdown -->
@@ -32,7 +33,7 @@
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 111.414 1.414l-4 4a1 1 01-1.414 0l-4-4a1 1 010-1.414z" clip-rule="evenodd" />
                                 </svg>
                             </div>
                         </button>
@@ -42,13 +43,22 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
+                        <x-dropdown-link :href="route('profile.edit')">
+                            {{ __('Events') }}
+                        </x-dropdown-link>
+                        @if(\Illuminate\Support\Facades\Auth::user()->role=='admin')
+                            <x-dropdown-link :href="route('posts.index')">
+                                {{ __('Posts') }}
+                            </x-dropdown-link>
+                        @endif
+
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
                             <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
+                                             onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
@@ -75,6 +85,9 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+{{--            <x-responsive-nav-link :href="route('events')" :active="request()->routeIs('events')">--}}
+{{--                {{ __('Events') }}--}}
+{{--            </x-responsive-nav-link>--}}
         </div>
 
         <!-- Responsive Settings Options -->
@@ -88,13 +101,21 @@
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('profile.edit')">
+                    {{ __('Events') }}
+                </x-responsive-nav-link>
+                @if(\Illuminate\Support\Facades\Auth::user()->role=='admin')
+                    <x-responsive-nav-link :href="route('posts.index')">
+                        {{ __('Posts') }}
+                    </x-responsive-nav-link>
+                @endif
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
                     <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
+                                           onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
